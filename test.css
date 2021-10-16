@@ -1,0 +1,125 @@
+.bg-special{
+    background: linear-gradient(-135deg, #FFA4CE, #9BCAFB);
+}
+
+.bg-pink{
+    background: #FFD1DB;
+    border-radius: 5px;
+}
+
+.box-tab{
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #FFD1DB;
+    background: #FFFF;
+    border-top: solid 10px #FEA1CD;
+    border-radius: 10px;
+}
+
+.main-tab{
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    background: #FFD1DB;
+    border-top: solid 25px #FEA1CD;
+    border-radius: 10px;
+    overflow: scroll;
+}
+
+.white-box{
+    background: white;
+    border-radius: 10px;
+}
+.img-fit{
+    object-fit: contain;
+    height: 200px;
+    width: 100%;
+}
+
+.smallImg-fit{
+    object-fit: contain;
+    height: 80px;
+    width: 100%;
+}
+
+.btn-pink{
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 1.2rem;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 0.8rem ;   /* 余白       */
+  background    : #ffa4ce;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 0.5rem;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  border        : 2px solid #ffa4ce;    /* 枠の指定 */
+}
+
+.btn-pink:hover {
+    color         : #ffa4ce;     /* 背景色     */
+    background    : #ffffff;     /* 文字色     */
+}
+
+.btn-blue{
+    display       : inline-block;
+    border-radius : 5%;          /* 角丸       */
+    font-size     : 1.2rem;        /* 文字サイズ */
+    text-align    : center;      /* 文字位置   */
+    cursor        : pointer;     /* カーソル   */
+    padding       : 0.8rem ;   /* 余白       */
+    background    : #9BCAFB;     /* 背景色     */
+    color         : #ffffff;     /* 文字色     */
+    line-height   : 0.5rem;         /* 1行の高さ  */
+    transition    : .3s;         /* なめらか変化 */
+    border        : 2px solid #9BCAFB;    /* 枠の指定 */
+}
+
+.btn-blue:hover{
+    color         : #9BCAFB;     /* 背景色     */
+    background    : #ffffff;     /* 文字色     */
+}
+
+.overflow-auto{
+    overflow: auto;
+}
+
+.text-purple{
+    color: #3B4099;
+}
+
+.text-blue{
+    color: #9BCAFB;
+}
+
+.flowHeight{
+    height: 66%;
+}
+
+.box-height{
+    height: auto;
+}
+
+@media (min-width: 576px){
+    /*.flowHeight{
+        height: 35%;
+    }*/
+    .box-height{
+        height: 100%;
+    }
+}
+
+
+
+.border{
+    border: 1px solid #9BCAFB;
+}
+/*
+.flexible-height{
+    height: auto;
+}
+@media (min-widt: 576px){
+    .flexible-height{
+        height: 100%;
+    }
+}
+*/
