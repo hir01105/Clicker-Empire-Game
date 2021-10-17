@@ -12,7 +12,7 @@
     margin: 2em 0;
     color: #FFD1DB;
     background: #FFFF;
-    border-top: solid 10px #FEA1CD;
+    border-top: solid 20px #FEA1CD;
     border-radius: 10px;
 }
 
@@ -35,15 +35,27 @@
     width: 100%;
 }
 
+.img-fit:hover{
+    cursor: pointer;
+    opacity: 0.5;
+}
+
 .smallImg-fit{
     object-fit: contain;
     height: 80px;
     width: 100%;
 }
 
+.middleImg-fit{
+    object-fit: contain;
+    height: 120px;
+    width: 100%;
+}
+
+
 .btn-pink{
   display       : inline-block;
-  border-radius : 5%;          /* 角丸       */
+  border-radius : 10px;          /* 角丸       */
   font-size     : 1.2rem;        /* 文字サイズ */
   text-align    : center;      /* 文字位置   */
   cursor        : pointer;     /* カーソル   */
@@ -62,7 +74,7 @@
 
 .btn-blue{
     display       : inline-block;
-    border-radius : 5%;          /* 角丸       */
+    border-radius : 10px;          /* 角丸       */
     font-size     : 1.2rem;        /* 文字サイズ */
     text-align    : center;      /* 文字位置   */
     cursor        : pointer;     /* カーソル   */
@@ -108,7 +120,15 @@
     }
 }
 
-
+.item:hover{
+    cursor: pointer;
+    border: solid 1px #3B4099;
+}
+/*
+.hover{
+    cursor: pointer;
+}
+*/
 
 .border{
     border: 1px solid #9BCAFB;

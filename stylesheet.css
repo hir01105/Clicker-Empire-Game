@@ -1,0 +1,125 @@
+.bg-special{
+    background: linear-gradient(-135deg, #FFA4CE, #9BCAFB);
+}
+
+.bg-pink{
+    background: #FFD1DB;
+    border-radius: 5px;
+}
+
+.box-tab{
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    color: #FFD1DB;
+    background: #FFFF;
+    border-top: solid 20px #FEA1CD;
+    border-radius: 10px;
+}
+
+.main-tab{
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    background: #FFD1DB;
+    border-top: solid 25px #FEA1CD;
+    border-radius: 10px;
+    overflow: scroll;
+}
+
+.white-box{
+    background: white;
+    border-radius: 10px;
+}
+.img-fit{
+    object-fit: contain;
+    height: 200px;
+    width: 100%;
+}
+
+.img-fit:hover{
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.smallImg-fit{
+    object-fit: contain;
+    height: 80px;
+    width: 100%;
+}
+
+.btn-pink{
+  display       : inline-block;
+  border-radius : 5%;
+  font-size     : 1.2rem;
+  text-align    : center;
+  cursor        : pointer;
+  padding       : 0.8rem ;
+  background    : #ffa4ce;
+  color         : #ffffff;
+  line-height   : 0.5rem;
+  transition    : .3s;
+  border        : 2px solid #ffa4ce;
+}
+
+.btn-pink:hover {
+    color         : #ffa4ce;
+    background    : #ffffff;
+}
+
+.btn-blue{
+    display       : inline-block;
+    border-radius : 5%; 
+    font-size     : 1.2rem;
+    text-align    : center;
+    cursor        : pointer;
+    padding       : 0.8rem ;
+    background    : #9BCAFB;
+    color         : #ffffff;
+    line-height   : 0.5rem;
+    transition    : .3s;
+    border        : 2px solid #9BCAFB;
+}
+
+.btn-blue:hover{
+    color         : #9BCAFB;
+    background    : #ffffff;
+}
+
+.overflow-auto{
+    overflow: auto;
+}
+
+.text-purple{
+    color: #3B4099;
+}
+
+.text-blue{
+    color: #9BCAFB;
+}
+
+.flowHeight{
+    height: 66%;
+}
+
+.box-height{
+    height: auto;
+}
+
+.item:hover{
+    cursor: pointer;
+    border: solid 1px #3B4099;
+}
+
+@media (min-width: 576px){
+    /*.flowHeight{
+        height: 35%;
+    }*/
+    .box-height{
+        height: 100%;
+    }
+}
+
+
+
+.border{
+    border: 1px solid #9BCAFB;
+}
