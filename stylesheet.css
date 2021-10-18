@@ -46,6 +46,12 @@
     width: 100%;
 }
 
+.middleImg-fit{
+    object-fit: contain;
+    height: 120px;
+    width: 100%;
+}
+
 .btn-pink{
   display       : inline-block;
   border-radius : 5%;
