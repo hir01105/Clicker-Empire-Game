@@ -31,11 +31,11 @@ class Item{
     getProfitDescription(){
         let profitStr = "";
         if (this.type == "ability"){
-            profitStr = "¥" + this.profit + " /click";
+            profitStr = "¥" + (this.profit).toLocaleString() + " /click";
         }else if(this.type == "investment"){
             profitStr = "¥" + this.profit + "% /sec";
         }else{
-            profitStr = "¥" + this.profit + " /sec";
+            profitStr = "¥" + (this.profit).toLocaleString() + " /sec";
         }
         return profitStr;
     }
@@ -106,6 +106,14 @@ class UserAccount{
         this.money -= targetItem.price * number;
         this.updateProfitPerSec();
     }
+
+    oneSecondPassed(){
+        this.money += this.profitPerSec;
+        this.day += 1;
+        let yearsPassed = Math.floor(this.day / 365);
+        const initialAge = 20;
+        this.age =  initialAge + yearsPassed;
+    }
 }
 
 const items = [
@@ -142,7 +150,7 @@ function createItemContainer(itemArray){
                     <h5>${currItem.number}</h5>
                 </div>
                 <div class="d-flex justify-content-between">
-                    <p>${currItem.price}</p>
+                    <p>¥${(currItem.price).toLocaleString()}</p>
                     <p class="text-purple">${profitStr}</p>
                 </div>
             </div>
@@ -165,7 +173,6 @@ function createInfoCon(UserAccount){
     let element = UserAccount.name;
     let eleClassName = "userName";
     for(let i=0;i < 4;i++){
-        console.log(infoCon.innerHTML)
         switch(i){
             case 1:
                 element = UserAccount.age + " years old";
@@ -176,19 +183,18 @@ function createInfoCon(UserAccount){
                 eleClassName = "userDays";
                 break;
             case 3:
-                element = "¥" + UserAccount.money;
+                element = "¥" + (UserAccount.money).toLocaleString();
                 eleClassName = "userMoney";
         }
         htmlString += 
         `
         <div class="col-12 col-sm-6 p-1">
-            <div class="bg-pink text-center text-white p-2 userInfo">
-                <h6 class=${eleClassName} id=${eleClassName}>${element}</h6>
+            <div class="bg-pink text-center text-white p-2">
+                <h6 class="userInfo" id=${eleClassName}>${element}</h6>
             </div>
         </div>
         `;
     }
-    console.log(infoCon.innerHTML)
     htmlString +=
     `
     </div>
@@ -229,7 +235,7 @@ function createSubPage(UserAccount, value){
             <div>
                 <h4>${targetItem.name}</h4>
                 <p>Max purchases: ${maxPurchaseStr}</p>
-                <p>Price: ¥${targetItem.price}</p>
+                <p>Price: ¥${targetItem.price.toLocaleString()}</p>
                 <p>Get ${targetItem.getProfitDescription()}</p>
             </div>
             <div>
@@ -251,7 +257,7 @@ function createSubPage(UserAccount, value){
     inputForm.addEventListener("change", (ele) => {
         let totalView = subPage.querySelectorAll(".total-view")[0];
         let total = ele.target.value * targetItem.price;
-        totalView.innerHTML = "total: ¥" + total;
+        totalView.innerHTML = "total: ¥" + total.toLocaleString();
     })
 
     let backBtn = subPage.querySelectorAll(".back-btn")[0];
@@ -281,12 +287,12 @@ function createSubPage(UserAccount, value){
 
 function updateUserMoney(UserAccount){
     let userMoney = document.getElementById("userMoney");
-    userMoney.innerHTML = "¥" + UserAccount.money;
+    userMoney.innerHTML = "¥" + UserAccount.money.toLocaleString();
 }
 
 function updateBurger(UserAccount){
     let userBurger = document.getElementById("userBurger");
-    userBurger.innerHTML = UserAccount.burger + " Burgers";
+    userBurger.innerHTML = UserAccount.burger.toLocaleString() + " Burgers";
 }
 
 function initializeUserAccount(){
@@ -313,7 +319,7 @@ function createMainPage(UserAccount){
     `
     <div class="bg-pink pt-1 text-white text-center">
         <h6 id="userBurger">${UserAccount.burger} Burgers</h6>
-        <p id="userOneClick">one click ¥${UserAccount.oneClick}</p>
+        <p id="userOneClick">one click ¥${UserAccount.oneClick.toLocaleString()}</p>
     </div>
     <div class="p-2 pt-sm-5 d-flex justify-content-center">
         <img src="https://cdn-icons.flaticon.com/png/512/1811/premium/1811974.png?token=exp=1634361657~hmac=702ef0ac8c4f857ea597b2919beddb68" class="img-fit hover burger">
@@ -357,5 +363,20 @@ function createMainPage(UserAccount){
 
 
 document.getElementById("register").addEventListener("click", function(){
-    createMainPage(initializeUserAccount());
+    if(document.getElementById("name-input").value == ""){
+        alert("Please put your name")
+    }else{
+        let account = initializeUserAccount();
+        createMainPage(account, true);
+        //this function works every second
+        setInterval(function(){
+            account.oneSecondPassed();
+            let userInfoArray = document.querySelectorAll(".userInfo");
+            userInfoArray[1].innerHTML = account.age + " years old";
+            userInfoArray[2].innerHTML = account.day + " days";
+            userInfoArray[3].innerHTML = "¥" + account.money.toLocaleString();
+            
+        },1000)
+    }
+    //event.preventDefault();
 })
