@@ -3,6 +3,24 @@ const config = {
     mainPage: document.getElementById("mainPage"),
 }
 
+//global valiable for timer
+let oneSecondTimer;
+
+function startTimer(account){
+    oneSecondTimer = setInterval(function(){
+                        account.oneSecondPassed();
+                        let userInfoArray = document.querySelectorAll(".userInfo");
+                        userInfoArray[1].innerHTML = account.age + " years old";
+                        userInfoArray[2].innerHTML = account.day + " days";
+                        userInfoArray[3].innerHTML = "¥" + account.money.toLocaleString();
+                        
+                    },1000);
+}
+
+function stopTimer(){
+    clearInterval(oneSecondTimer);
+}
+
 function displayNone(ele){
     ele.classList.remove("d-block");
     ele.classList.add("d-none");
@@ -56,7 +74,7 @@ class Item{
     increaseItem(num){
         let isAbility = false;
         this.number += num;
-        if(isFinite(this.max)){
+        if(this.max != null){
             this.max -= num;
         }
         this.updateTotalValue(num);
@@ -114,12 +132,29 @@ class UserAccount{
         const initialAge = 20;
         this.age =  initialAge + yearsPassed;
     }
+
+    getUserData(){
+        let dataArray = 
+        
+        {
+            age: this.age,
+            day: this.day,
+            money: this.money,
+            oneClick: this.oneClick,
+            burger: this.burger,
+            items: this.items,
+            profitPerSec: this.profitPerSec
+        };
+        
+        return dataArray;
+    }
 }
 
-const items = [
+
+const defaultItems = [
     new Item("Flip machine", "ability", 500, 15000, 25, 0, 0, 0, "https://cdn-icons.flaticon.com/png/512/2454/premium/2454610.png?token=exp=1634399906~hmac=ccc2d1365b466253e5177924d16ef1de"),
-    new Item("ETF Stock", "investment", Infinity, 300000, 0.1, 0, 0, 0,  "https://cdn-icons-png.flaticon.com/512/4256/4256863.png"),
-    new Item("ETF Bonds", "investment", Infinity, 300000, 0.07, 0, 0, 0,  "https://cdn-icons-png.flaticon.com/512/4256/4256863.png"),
+    new Item("ETF Stock", "investment", null, 300000, 0.1, 0, 0, 0,  "https://cdn-icons-png.flaticon.com/512/4256/4256863.png"),
+    new Item("ETF Bonds", "investment", null, 300000, 0.07, 0, 0, 0,  "https://cdn-icons-png.flaticon.com/512/4256/4256863.png"),
     new Item("Lemonade Stand", "real estate", 1000, 30000, 30, 0, 0, 0, "https://cdn-icons-png.flaticon.com/512/941/941769.png"),
     new Item("Ice Cream Truck", "real estate", 500, 100000, 120, 0, 0, 0, "https://cdn-icons.flaticon.com/png/512/2514/premium/2514823.png?token=exp=1634402318~hmac=4faf473104bb2b54ba95e3437f619f6e"),
     new Item("House", "real estate", 100, 20000000, 32000, 0, 0, 0, "https://cdn-icons-png.flaticon.com/512/619/619153.png"),
@@ -129,6 +164,14 @@ const items = [
     new Item("Hotel Skyscraper", "real estate", 5, 10000000000, 25000000, 0, 0, 0, "https://cdn-icons-png.flaticon.com/512/2855/2855426.png"),
     new Item("Bullet-Speed Sky Railway", "real estate", 1, 10000000000000, 30000000000, 0, 0, 0, "https://cdn-icons.flaticon.com/png/512/2074/premium/2074306.png?token=exp=1634402443~hmac=aef92bddf28392e583d8868cf7520262")
 ];
+
+//ここから頑張る
+const items = [
+    
+        
+    
+]
+
 
 function createItemContainer(itemArray){
     let container = document.createElement("div");
@@ -208,10 +251,10 @@ function createResetAndSave(){
     container.classList.add("d-flex", "justify-content-end", "mt-2");
     container.innerHTML =
     `
-    <div class="border p-2 m-2">
+    <div class="border p-2 m-2 reset-btn">
         <i class="fas fa-undo fa-2x text-blue"></i>
     </div>
-    <div class="border p-2 m-2">
+    <div class="border p-2 m-2 save-btn">
         <i class="fas fa-save fa-2x text-blue"></i>
     </div>
     `;
@@ -225,7 +268,7 @@ function createSubPage(UserAccount, value){
     let intValue = parseInt(value);
     let targetItem = UserAccount.items[intValue];
     let maxPurchaseStr = targetItem.max;
-    if(maxPurchaseStr == "Infinity"){
+    if(maxPurchaseStr === null){
         maxPurchaseStr = "∞";
     }
     let htmlString = 
@@ -295,10 +338,9 @@ function updateBurger(UserAccount){
     userBurger.innerHTML = UserAccount.burger.toLocaleString() + " Burgers";
 }
 
-function initializeUserAccount(){
-    const form = document.getElementById("name-form");
-    let name = form.querySelectorAll("input")[0].value;
-    let account = new UserAccount(name, 20, 0, 50000, 25, 0, items, 0);
+function initializeUserAccount(name){
+    console.log(defaultItems)
+    let account = new UserAccount(name, 20, 0, 50000, 25, 0, defaultItems.slice(), 0);
     return account;
 }
 
@@ -341,7 +383,7 @@ function createMainPage(UserAccount){
     mainTab.append(rightside);
     container.append(mainTab);
 
-    //set button functions
+    //set button function for Burger icon
     let burgerImage = leftSide.querySelectorAll(".burger")[0];
     burgerImage.addEventListener("click", function(){
         UserAccount.clickBurger();
@@ -349,6 +391,7 @@ function createMainPage(UserAccount){
         updateBurger(UserAccount);
     })
 
+    //set event for item selections
     let itemBoxes = whiteBoxContainer.querySelectorAll(".item");
     for(let i=0;i < itemBoxes.length;i++){
         let currItem = itemBoxes[i];
@@ -357,26 +400,76 @@ function createMainPage(UserAccount){
         })
     }
 
+    //set button function reset & save
+    let resetBtn = rightside.querySelectorAll(".reset-btn")[0];
+    resetBtn.addEventListener("click", function(){
+        const result = window.confirm("Reset All Data?");
+        if(result){
+            stopTimer();
+            let name = UserAccount.name;
+            if(localStorage.getItem(name) != null){
+                localStorage.removeItem(name);
+            }
+            config.mainPage.innerHTML = "";
+            let newAccount = initializeUserAccount(name);
+            console.log(newAccount)
+            createMainPage(newAccount);
+            startTimer(newAccount);
+        }
+    })
+    
+    let saveBtn = rightside.querySelectorAll(".save-btn")[0];
+    saveBtn.addEventListener("click", function(){
+        stopTimer();
+        const saveData = JSON.stringify(UserAccount.getUserData());
+        localStorage.setItem(UserAccount.name, saveData);
+        alert("Saved your data. Please put the same name when you login.");
+        displayNone(config.mainPage);
+        config.mainPage.innerHTML = "";
+        let inputForm = document.querySelectorAll(".name-input")[0];
+        inputForm.value = "";
+        displayBlock(config.initialPage);
+    })
+
     config.mainPage.append(container);
     //return container
 }
 
 
+
+//New button on the initail page
 document.getElementById("register").addEventListener("click", function(){
-    if(document.getElementById("name-input").value == ""){
-        alert("Please put your name")
+    const userName = document.querySelectorAll(".name-input")[0].value;
+    if(userName == ""){
+        alert("Please put your name");
     }else{
-        let account = initializeUserAccount();
-        createMainPage(account, true);
-        //this function works every second
-        setInterval(function(){
-            account.oneSecondPassed();
-            let userInfoArray = document.querySelectorAll(".userInfo");
-            userInfoArray[1].innerHTML = account.age + " years old";
-            userInfoArray[2].innerHTML = account.day + " days";
-            userInfoArray[3].innerHTML = "¥" + account.money.toLocaleString();
-            
-        },1000)
+        let account = initializeUserAccount(userName);
+        createMainPage(account);
+        //startTimer
+        startTimer(account);
     }
     //event.preventDefault();
+})
+
+//Login button on the initial page
+document.getElementById("login").addEventListener("click", function(){
+    const userName = document.querySelectorAll(".name-input")[0].value;
+    if(userName == ""){
+        alert("Please put your name");
+    }else if(localStorage.getItem(userName) === null){
+        alert("There is no data.");
+    }else{
+        let userInfo = JSON.parse(localStorage.getItem(userName));
+        let itemList = [];
+        for(let i=0;i < userInfo.items.length;i++){
+            let currItem = userInfo.items[i];
+            let itemObj = new Item(currItem.name, currItem.type, currItem.max, currItem.price, currItem.profit, currItem.profitPerSec, currItem.totalValue, currItem.number, currItem.imageUrl);
+            itemList.push(itemObj);
+        }
+        let account = new UserAccount(userName, userInfo.age, userInfo.day, userInfo.money, userInfo.oneClick, userInfo.burger, itemList, userInfo.profitPerSec);
+        createMainPage(account);
+        //startTimer
+        startTimer(account);
+
+    }
 })
