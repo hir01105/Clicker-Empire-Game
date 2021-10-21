@@ -164,7 +164,7 @@ const defaultItems = [
         profitPerSec:0,
         number: 0,
         totalValue: 0,
-        imageUrl: "https://cdn-icons.flaticon.com/png/512/2454/premium/2454610.png?token=exp=1634399906~hmac=ccc2d1365b466253e5177924d16ef1de"
+        imageUrl: "https://cdn-icons-png.flaticon.com/512/823/823215.png"
     },
     {
         name: "ETF Stock",
@@ -208,7 +208,7 @@ const defaultItems = [
         profitPerSec: 0,
         number: 0,
         totalValue: 0,
-        imageUrl: "https://cdn-icons.flaticon.com/png/512/2514/premium/2514823.png?token=exp=1634402318~hmac=4faf473104bb2b54ba95e3437f619f6e"
+        imageUrl: "https://cdn-icons-png.flaticon.com/512/532/532832.png"
     },
     {
         name: "House",
@@ -252,7 +252,7 @@ const defaultItems = [
         profitPerSec: 0,
         number: 0,
         totalValue: 0,
-        imageUrl: "https://cdn-icons.flaticon.com/png/512/3256/premium/3256216.png?token=exp=1634402721~hmac=91b683630ddfe1211c0b7ac79fdcb521"
+        imageUrl: "https://cdn-icons-png.flaticon.com/512/3618/3618747.png"
     },
     {
         name: "Hotel Skyscraper",
@@ -274,7 +274,7 @@ const defaultItems = [
         profitPerSec: 0,
         number: 0,
         totalValue: 0,
-        imageUrl: "https://cdn-icons.flaticon.com/png/512/2074/premium/2074306.png?token=exp=1634402443~hmac=aef92bddf28392e583d8868cf7520262"
+        imageUrl: "https://cdn-icons-png.flaticon.com/512/2159/2159692.png"
     }
 ]
 
@@ -301,7 +301,7 @@ function createMainPage(UserAccount){
         <p id="userOneClick">one click ¥${UserAccount.oneClick.toLocaleString()}</p>
     </div>
     <div class="p-2 pt-sm-5 d-flex justify-content-center">
-        <img src="https://cdn-icons.flaticon.com/png/512/1811/premium/1811974.png?token=exp=1634361657~hmac=702ef0ac8c4f857ea597b2919beddb68" class="img-fit hover burger">
+        <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" class="img-fit hover burger">
     </div>
     `;
     
