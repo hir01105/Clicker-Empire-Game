@@ -547,9 +547,9 @@ function initializeUserAccount(name){
     }
     let account = new UserAccount(name, 20, 0, 50000, 25, 0, itemList, 0);
     //For testing
-    if(name.indexOf("test") != -1){
-        account = new UserAccount(name, 20, 0, 100000000000, 25, 0, itemList, 0);
-    }
+    //if(name.indexOf("test") != -1){
+    //    account = new UserAccount(name, 20, 0, 100000000000, 25, 0, itemList, 0);
+    //}
     return account;
 }
 
