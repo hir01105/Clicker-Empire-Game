@@ -35,6 +35,11 @@ ETF Stockは毎回購入するごとに次回の購入価格が10%値上がり�
 データをセーブしたら、また最初の画面で同じプレイヤー名を入力することで続きからゲームを開始できます。
 
 ## Screenshots
+<img width="1440" alt="Screen Shot 2021-10-21 at 18 00 05" src="https://user-images.githubusercontent.com/78921835/138246633-a8b950f1-7ee4-4fc5-a6b7-0e68f0e1ae75.png">
+
+<img width="1440" alt="Screen Shot 2021-10-21 at 18 01 11" src="https://user-images.githubusercontent.com/78921835/138246826-1655f5d6-3428-49be-a604-790f35d35909.png">
+
+<img width="1440" alt="Screen Shot 2021-10-21 at 18 02 40" src="https://user-images.githubusercontent.com/78921835/138246876-a9df3c63-fc3f-466f-adf5-9704153e94c6.png">
 
 ## URL
 https://hir01105.github.io/Clicker-Empire-Game/
